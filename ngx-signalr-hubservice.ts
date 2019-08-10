@@ -284,7 +284,7 @@ export class HubService {
      */
     public disconnect(): Observable<boolean> {
         // connection.stop just returns the connection object, so map it to this.connected when it completes
-        return from<boolean>(this._connection.stop()).pipe(map((value: any) => this.connected));
+        return of<boolean>(this._connection.stop()).pipe(map((value: any) => this.connected));
     }
 
     /**
@@ -320,8 +320,10 @@ export class HubService {
     private reconnectedCallback = () => {
         this.reconnectedEmitter.emit(this.connected);
         this.connectedEmitter.emit(this.connected);
-        this.reconnectingObservable.next(this.connected);
-        this.reconnectingObservable = null;
+        if (this.options.attemptReconnects) {
+            this.reconnectingObservable.next(this.connected);
+            this.reconnectingObservable = null;
+        }
     }
 
     /**
@@ -335,7 +337,9 @@ export class HubService {
     // this gets called from within the signalr instance so we have to make it a scoped method on the hubservice
     private recconectingCallback = () => {
         this.reconnectingEmitter.emit();
-        this.reconnectingObservable = new Subject<boolean>();
+        if (this.options.attemptReconnects) {
+            this.reconnectingObservable = new Subject<boolean>();
+        }
     }
 
     /**
