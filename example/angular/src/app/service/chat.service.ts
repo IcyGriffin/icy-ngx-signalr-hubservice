@@ -8,7 +8,7 @@ import {
   HubService,
   HubWrapper,
   HubSubscription
-} from "ngx-signalr-hubservice";
+} from "icy-ngx-signalr-hubservice";
 
 export interface ChatMessage { username: string; message: string; }
 
