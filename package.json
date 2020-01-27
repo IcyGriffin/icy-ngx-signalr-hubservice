@@ -1,6 +1,6 @@
 {
   "name": "icy-ngx-signalr-hubservice",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "Makes using signalr in angular 2 easy",
   "main": "index.js",
   "scripts": {
@@ -29,9 +29,9 @@
     "jquery": "^3.2.1"
   },
   "peerDependencies": {
-    "@angular/core": "^6.0.3",
-    "rxjs": "^6.2.0",
-    "zone.js": "^0.8.16"
+    "@angular/core": ">=6.0.3",
+    "rxjs": ">=6.2.0",
+    "zone.js": ">=0.8.16"
   },
   "devDependencies": {
     "tslint": "~5.3.2",
